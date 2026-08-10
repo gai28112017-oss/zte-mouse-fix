@@ -1,11 +1,19 @@
 package com.example;
 
-import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.Mouse;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-public class MouseFixClient implements ClientModInitializer {
+@Mixin(Mouse.class)
+public class MouseFixMixin {
 
-    @Override
-    public void onInitializeClient() {
-        System.out.println("[ZTE Mouse Fix] Client loaded!");
+    @Inject(
+        method = "updateMouse",
+        at = @At("HEAD")
+    )
+    private void zteMouseFix(CallbackInfo ci) {
+        // Mouse rotation fix sẽ được thêm ở bước tiếp theo.
     }
 }
